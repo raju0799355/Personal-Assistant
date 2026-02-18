@@ -6,7 +6,7 @@ from fuzzywuzzy import process
 import asyncio
 try:
     import pygetwindow as gw
-except ImportError:
+except ImportError
     gw = None
 
 from langchain.tools import tool
@@ -101,6 +101,7 @@ async def Play_file(name: str) -> str:
     index = await index_files(folders_to_index)
     command = name.strip()
     return await handle_command(command, index)
+
 
 
 
