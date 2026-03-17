@@ -11,8 +11,11 @@ from livekit import agents
 from livekit.agents import AgentSession, Agent, RoomInputOptions
 from livekit.plugins import (
     google,
-    noise_cancellation,
+    openai,
+    deepgram,
+    silero,
 )
+
 from Jarvis_prompts import behavior_prompts, Reply_prompts
 
 from Jarvis_search import google_search, get_current_datetime
@@ -74,13 +77,12 @@ async def entrypoint(ctx: agents.JobContext):
                     voice="Charon"
                 )
             )
-            
-            await session.start(
-                room=ctx.room,
-                agent=Assistant(),
-                room_input_options=RoomInputOptions(
-                    noise_cancellation=noise_cancellation.BVC(),
-                    video_enabled=True 
+             await session.start(
+                 room=ctx.room,
+                 agent=Assistant(),
+                 room_input_options=RoomInputOptions(
+                 noise_cancellation=silero.BVC(),
+                 video_enabled=True
                 ),
             )
 
